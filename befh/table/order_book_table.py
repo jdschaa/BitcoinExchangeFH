@@ -158,9 +158,10 @@ class OrderBook(Table):
         max_bid_depth = min(len(bids), self._depth)
         max_ask_depth = min(len(asks), self._depth)
 
+        bid_offset = len(bids) - len(self._bids)
         for i in range(0, max_bid_depth):
-            self._bids[i][0].value = bids[i][0]
-            self._bids[i][1].value = bids[i][1]
+            self._bids[i][0].value = bids[i + bid_offset][0]
+            self._bids[i][1].value = bids[i + bid_offset][1]
             is_update |= (
                 self._bids[i][0] != self._prev_bids[i][0] or
                 self._bids[i][1] != self._prev_bids[i][1]
