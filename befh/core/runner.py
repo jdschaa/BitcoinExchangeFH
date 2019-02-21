@@ -167,6 +167,12 @@ class Runner:
                 is_debug=is_debug,
                 is_cold=is_cold,
                 **handler_parameters)
+        elif handler_name == "ws":
+            from befh.handler import WsHandler
+            handler = WsHandler(
+                is_debug=is_debug,
+                is_cold=is_cold,
+                **handler_parameters)
         else:
             raise NotImplementedError(
                 'Handler %s is not implemented' % handler_name)
